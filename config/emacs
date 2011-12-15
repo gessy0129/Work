@@ -1,0 +1,88 @@
+;;; load-path追加
+(setq load-path (cons (expand-file-name "~/lib/elisp") load-path))
+;;; 日本語環境設定
+(set-language-environment "Japanese")
+;;開く場合に優先する文字コード
+(prefer-coding-system 'utf-8)
+;;デフォルトで使用する文字コード
+(set-default-coding-systems 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+;;キーボードから入力される文字コード
+(set-keyboard-coding-system 'utf-8)
+;;ターミナルの文字コード
+(set-terminal-coding-system 'utf-8)
+;;ファイル名の文字コード
+(setq file-name-coding-system 'utf-8)
+;; ;;; カーソルの設定
+;;; 対応する括弧を光らせる
+(show-paren-mode 1)
+;;; font-lockの設定
+(global-font-lock-mode t)
+;;タイトルバーの設定
+(setq frame-title-format "%b")
+;; ツールバーを表示しない
+(tool-bar-mode 0)
+;; メニューの削除
+(menu-bar-mode -1)
+;; 起動時の画面はいらない
+(setq inhibit-startup-message t)
+;;タブ幅を 4 に設定
+(setq-default tab-width 4)
+;;インデント幅
+(setq c-basic-offset 4)
+
+;;タブ幅の倍数を設定
+(setq tab-stop-list
+'(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60))
+;;タブではなくスペースを使う
+(setq-default indent-tabs-mode nil)
+(setq indent-line-function 'indent-relative-maybe)
+;;; カーソルの位置が何文字目かを表示する
+(column-number-mode t)
+;;; カーソルの位置が何行目かを表示する
+(line-number-mode t)
+;; バックアップファイルと、自動セーブを無効
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+;;選択範囲を反転
+(setq transient-mark-mode t)
+;;対応する括弧を太字にする
+(show-paren-mode t)
+;;;改行キーでauto indent
+(global-set-key "\C-m" 'newline-and-indent)
+(global-set-key "\C-j" 'newline)
+;; goto-lineを簡単に
+(global-set-key "\M-g" 'goto-line)
+;; ウィンドウ間を移動
+(global-set-key "\M-b" 'windmove-left)
+(global-set-key "\M-n" 'windmove-down)
+(global-set-key "\M-p" 'windmove-up)
+(global-set-key "\M-f" 'windmove-right)
+;; 無限ループ
+(setq windmove-wrap-around t)
+;;; 改行は必要ない
+(setq require-final-newline nil)
+;; 元に戻す
+(define-key global-map "\C-z" 'undo)
+(global-set-key "\C-z" 'undo)
+;; html-mode
+(setq auto-mode-alist
+      (append '(("\\.html$" . html-mode)
+                ("\\.tpl$" . html-mode)
+                ("\\.tpl[s34]?\\'" . html-mode))
+              auto-mode-alist))
+(setq auto-mode-alist
+      (append '(("\\.html[s34]?\\'" . html-mode)) auto-mode-alist))
+;; php-mode
+(autoload 'php-mode "php-mode" "PHP mode" t)
+(defcustom php-file-patterns (list "\\.php[s34]?\\'" "\\.phtml\\'" "\\.inc\\'")
+    "*List of file patterns for which to automatically invoke php-mode."
+    :type '(repeat (regexp :tag "Pattern"))
+    :group 'php)
+
+(let ((php-file-patterns-temp php-file-patterns))
+  (while php-file-patterns-temp
+    (add-to-list 'auto-mode-alist
+                 (cons (car php-file-patterns-temp) 'php-mode))
+    (setq php-file-patterns-temp (cdr php-file-patterns-temp))))

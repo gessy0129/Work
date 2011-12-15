@@ -1,0 +1,34 @@
+syntax on
+colorscheme darkblue
+" Display
+set nolist
+set laststatus=2
+"set textwidth=78
+set showcmd
+set title
+" Editing
+set autoindent
+set showmatch
+set backspace=indent,eol,start
+"set matchpairs+=<:>
+" Others
+set nobackup
+set autoread
+set hidden
+" Perltidy
+"map ,ptv <Esc>:'<,'>! perltidy<CR>
+" Tab settings
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set shiftround
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+" Others
+set nobackup
+"
+set notitle
+highlight Search ctermbg=4

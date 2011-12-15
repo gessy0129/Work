@@ -1,0 +1,21 @@
+export MANPATH=/opt/local/man:$MANPATH
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
+# User specific aliases and functions
+
+# macport
+PATH=/opt/local/bin:/opt/local/sbin/:$PATH
+# homedir
+PATH=/usr/local/bin:$PATH:$HOME/bin:.
+export PATH
+
+TERM=xterm-color; export TERM
+
+export JLESSCHARSET=japanese
+
+##== command start == ##
+alias du='du -h --max-depth=1'
+alias euc='export LANG=ja_JP.EUC-JP'
+alias utf='export LANG=ja_JP.UTF-8'
+alias diff='diff -udBb'
+##== command end == ##
